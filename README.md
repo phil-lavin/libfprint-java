@@ -3,6 +3,8 @@ Introduction
 
 This is a really basic Java programme using jlibfprint to work with Finger Print readers.
 
+Uses jlibfprint wrapper from https://code.google.com/p/jlibfprint/.
+
 Usage
 =====
 
