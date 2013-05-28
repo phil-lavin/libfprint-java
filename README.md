@@ -16,9 +16,11 @@ java -cp '.:JlibFprint.jar' FingerPrint enroll <name>
 Verifying
 ---------
 
-java -cp '.:JlibFprint.jar' FingerPrint verify
+java -cp '.:JlibFprint.jar' FingerPrint verify [debug]
 
 On verification, the programme will tell you whose print was just scanned.
+
+Debug mode is activated by adding a second parameter - the value is irrelevant.
 
 Installing
 ==========
