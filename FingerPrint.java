@@ -25,7 +25,7 @@ public class FingerPrint {
 			enroll(args[1]);
 
 		if (args[0].equals("verify"))
-			verify();
+			verify((args.length > 1));
 	}
 
 	public static JlibFprint.fp_print_data get_print(String prefix, boolean repeat) {
@@ -68,7 +68,7 @@ public class FingerPrint {
 		serialize_to_file(name+"-2", print2);
 	}
 
-	public static void verify() {
+	public static void verify(boolean debug) {
 		// Get a print to compare
 		JlibFprint.fp_print_data fpd = get_print("Your", false);
 
@@ -82,6 +82,10 @@ public class FingerPrint {
 				JlibFprint.fp_print_data compare = (JlibFprint.fp_print_data)entry.getValue();
 
 				int matchValue = JlibFprint.img_compare_print_data(fpd, compare);
+
+				if (debug) {
+					System.out.println("Print compares to "+entry.getKey()+" with a Bozorth value of "+matchValue+" (threshold = "+JlibFprint.BOZORTH_THRESHOLD+")");
+				}
 
 				if (matchValue > JlibFprint.BOZORTH_THRESHOLD) {
 					String name = (String)entry.getKey();
