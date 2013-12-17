@@ -101,7 +101,7 @@ tar -xJf libfprint-0.5.1.tar.xz
 
 Find ```img.c``` and edit it. In my case, it's at ```./libfprint-0.5.1/libfprint/img.c```
 
-In ```img.c```, find the function ```int fpi_img_compare_print_data``` and add "API_EXPORTED" before it such that it looks like ```API_EXPORTED int fpi_img_compare_print_data```
+In ```img.c```, find the function ```int fpi_img_compare_print_data``` and add ```API_EXPORTED``` before it such that it looks like ```API_EXPORTED int fpi_img_compare_print_data```
 
 Change into the unpacked libfprint directory:
 
