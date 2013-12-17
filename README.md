@@ -11,7 +11,7 @@ You can enroll people and verify prints.
 Enrolling
 ---------
 
-java -cp '.:JlibFprint.jar' FingerPrint enroll <name>
+java -cp '.:JlibFprint.jar' FingerPrint enroll yourname
 
 Verifying
 ---------
