@@ -117,6 +117,11 @@ public class FingerPrint {
 
 		File dir = new File("prints");
 		for (File child : dir.listFiles()) {
+			// Skip dot files
+			if (child.getName().charAt(0) == '.') {
+				continue;
+			}
+
 			try {
 				// Get the name from the file
 				String name = child.getName().split("\\.")[0];
