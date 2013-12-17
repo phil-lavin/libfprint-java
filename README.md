@@ -26,6 +26,44 @@ On verification, the programme will tell you whose print was just scanned.
 
 Debug mode is activated by adding a second parameter - the value is irrelevant.
 
+Troubleshooting
+---------------
+
+If, on running the enroll, you get a bunch of scrolling output asking you to scan your print... it's likely that the user you're using doesn't have access to the fingerprint scanner. Try running the programme as root and, if that
+solves the problem, create a udev rule to give you permission to access the device. Example as follows:
+
+On plugging in the USB fingerprint scanner, run ```dmesg```, and get the idVendor and idProduct of the device. Note these down.
+
+Create a group called fingerprint:
+
+```
+groupadd fingerprint
+```
+
+Add your user to the fingerprint group (user, in this case, is pi):
+
+```
+usermod --append -G fingerprint pi
+```
+
+Remember to log out and back in to the user you changed the groups of to ensure it takes effect.
+
+Create a file called ```99-usb.rules``` in your udev rules.d directory. In my case, ```/etc/udev/rules.d/```
+
+Put the following in that file, remembering to replace the idVendor and idProduct with the ones you took from dmesg:
+
+```
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="08ff", ATTRS{idProduct}=="2580", SYMLINK+="sub20", GROUP="fingerprint", MODE="660"
+```
+
+Restart udev:
+
+```
+/etc/init.d/udev restart
+```
+
+Unplug and replug the USB device. With any luck, you'll be able to access it as the regular user.
+
 Installing
 ==========
 
@@ -63,7 +101,7 @@ tar -xJf libfprint-0.5.1.tar.xz
 
 Find ```img.c``` and edit it. In my case, it's at ```./libfprint-0.5.1/libfprint/img.c```
 
-In img.c, find the function ```int fpi_img_compare_print_data``` and add "API_EXPORTED" before it such that it looks like ```API_EXPORTED int fpi_img_compare_print_data```
+In ```img.c```, find the function ```int fpi_img_compare_print_data``` and add "API_EXPORTED" before it such that it looks like ```API_EXPORTED int fpi_img_compare_print_data```
 
 Change into the unpacked libfprint directory:
 
@@ -140,3 +178,4 @@ javac -cp '.:JlibFprint.jar' FingerPrint.java
 ```
 
 You can now run the programme as per the above Enrolling and Verifying instructions.
+
