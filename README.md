@@ -67,9 +67,9 @@ Unplug and replug the USB device. With any luck, you'll be able to access it as 
 Installing
 ==========
 
-Instructions are based on installing on Debian (Raspbian) on an RaspberryPi (armhf architecture). From memory, they don't differ from when I installed on an AMD64 Debian install.
+Instructions are based on installing on Debian (Raspbian) on an RaspberryPi (armhf architecture). Also tested on an i386 Debian install.
 
-I worked as a normal user named 'pi'. I'm assuming you have git and all the things you need to compile (gcc et al) as well as the Java JDK.
+I worked as a normal user named 'pi'. I'm assuming you have git and all the things you need to compile (gcc et al) as well as the Java JDK (the openjdk-7-jdk package is fine).
 
 First install the required libraries:
 
