@@ -109,10 +109,10 @@ Change into the unpacked libfprint directory:
 cd libfprint-0.5.1
 ```
 
-Compile libfprint:
+Compile libfprint. I suggest using ```/usr``` as a prefix as it has yielded less library linking headaches than the standard ```/usr/local```:
 
 ```
-./configure
+./configure --prefix=/usr
 make
 sudo make install
 ```
